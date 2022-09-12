@@ -17,6 +17,19 @@ top_fifteen <- fide %>%
          filter(rank(desc(ELO))<=15)
 top_fifteen
 
+# OR sort using this instead for a quick preview.
+fide %>%
+         select(name, ELO, games)%>%
+         filter(ELO > 2500) %>% head
+
+#Seeing data summary by mean.
+fide %>% 
+     summarise(avg = mean(ELO,na.rm=TRUE), 
+     min = min(ELO,na.rm=TRUE),
+     max = max(ELO,na.rm=TRUE),
+     total = n())
+
+
 #Next, let's try to play with EDA data on fide file & visualize it.
 
 #Create histogram of ELO.
