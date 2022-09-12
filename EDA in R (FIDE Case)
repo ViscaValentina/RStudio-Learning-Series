@@ -29,7 +29,6 @@ fide %>%
      max = max(ELO,na.rm=TRUE),
      total = n())
 
-
 #Next, let's try to play with EDA data on fide file & visualize it.
 
 #Create histogram of ELO.
