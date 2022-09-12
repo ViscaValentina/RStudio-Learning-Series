@@ -1,0 +1,40 @@
+#Note : I have provided the file in the Rstudio learning series, it's called FIDE Rankings. We will try to read the correlation of ELO and how often the GM(s) spend their time playing the games.
+#First, set your working directory to use the file during the trial of this exploratory data analysis script.
+
+#Next, read the file into your Rstudio console :)
+fide=read.csv("Chess FIDE Rankings.csv")
+
+#Second, activate the needed library.
+library(dplyr)
+library(ggplot2)
+
+#Third, try to see your data.
+fide(head)
+fide(tail)
+
+#Fourth , let's sort and took top 15 out of the ELO ranks available.
+top_fifteen <- fide %>%
+         filter(rank(desc(ELO))<=15)
+top_fifteen
+
+#Next, let's try to play with EDA data on fide file & visualize it.
+
+#Create histogram of ELO.
+hist(fide$SELO)
+
+#Create boxplot.
+boxplot(fide$ELO,main="Summary of fide",xlab="ELO")
+
+#Create correlation view on ELO vs games played.
+plot(fide$ELO,fide$games)
+#OR do this instead.
+qplot(ELO, games, data = fide)
+
+#Lastly, let's try visualize the previous top fifteen (15) ELO ranks and make a correlance to games played by each GM(s) do this.
+qplot(ELO, games, data = top_fifteen, color = name,
+      xlab = "ELO", ylab = "games",
+      main = "ELO vs. games in fide data")
+
+#Now you can see that the case of ELO Fide ranks of GM(s) doesn't really correlate with how often they played. This correlation doesn't define the causalities of both variable.
+Decide on the output based on your visualization. Have fun trying to visualize it!
+
